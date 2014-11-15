@@ -10,3 +10,9 @@ table td{
     width:33.33%;
     height:33.33%;
 }
+
+/* Actions buttons block */
+.action {
+	text-align: center;
+	margin: 20px 0;
+}
