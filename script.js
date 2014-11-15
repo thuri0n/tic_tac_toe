@@ -5,30 +5,49 @@
 			playerFlag = true; // if hui then true, else pizda
 			arrayLength = mainArray.length;
 
-		checkWinner();
+		trackChanges(2,0,'x');
+		trackChanges(2,1,'x');
+		trackChanges(2,2,'x');
+		alert(checkWinner());
+		alert(mainArray);
 
-		function trackChanges(posX, posY) {
+		function trackChanges(posX, posY, pSign) {
+			var playerSign = playerFlag ? 'x' : 'o';
+
+			if (pSign) {
+				playerSign = pSign;
+			}
 				
-			mainArray[posX][posY] = (playerFlag) ? 'x' : 'o';
+			mainArray[posX][posY] = playerSign;
 
 			playerFlag = !playerFlag;
 
 			return mainArray[posX][posY];
+			
 		}
 
 		function checkWinner() {
 			var i = 0,
 				j = 0,
-				k = 0;
+				winFlagByRow = false;
+				//winFlagByColumn = false;
+				//winFlag3 = true;
+				finalWinFlag = false;
 
 			for (i; i < arrayLength; i++) {
 				for (j = 0; j < arrayLength; j++) {
-					console.log(mainArray[i][j]);
-					k++;
+					if (mainArray[i][j] && (mainArray[i][j+1] != undefined)) {
+						if ((mainArray[i][j] == mainArray[i][j+1])) {
+							winFlagByRow = true;
+						}
+					}
+				}
+				if (winFlagByRow) {
+					finalWinFlag = true;
 				}
 			}
-			console.log('------------');
-			console.log(k + ' times');
+			
+			return finalWinFlag ? 'Congrats!!! Somebody has won!' : 'Sorry you not a winner!';
 		}
 	}
 
