@@ -24,10 +24,20 @@ img { border: 0; max-width: 100%; }
 
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
+.wrap {
+	margin: 0 auto;
+}
 table {
 	width:600px; 
 	height:600px;
-	margin: 0 auto;
+	float: left;
+	width: 49.9%;
+}
+.vagina, .penis {
+	float: left;
+	width: 24.9%;
+	margin-top: 10%;
+	text-align: center;
 }
 
 table td{
@@ -42,4 +52,15 @@ table td{
 .action {
 	text-align: center;
 	margin: 20px 0;
+}
+
+
+input[type="checkbox"] {
+	width: 100%;
+	height: 100%;
+	outline: none;
+}
+
+.clear {
+	clear: both;
 }
