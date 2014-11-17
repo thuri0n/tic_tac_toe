@@ -5,6 +5,10 @@
 			playerFlag = true; // if hui then true, else pizda
 			arrayLength = mainArray.length;
 
+		jQuery(document).on('click','input[type="checkbox"]', function() {
+			alert('sdf');
+		});
+
 		function trackChanges(posX, posY, pSign) {
 			var playerSign = playerFlag ? 'x' : 'o';
 
@@ -56,7 +60,6 @@
 						helperDiagonalValue1 = mainArray[i][j];
 					}
 					if (j==helperDiagonalDesc) {
-						console.log(mainArray[i][j] + '['+i+']' + '['+j+']' +':' + helperDiagonalDesc + ':' + helperDiagonalValue2);
 						if (mainArray[i][j] !== helperDiagonalValue2 || mainArray[i][j] === 0) {
 							winFlagByDiagonal2 = false;
 						}
