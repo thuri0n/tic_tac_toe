@@ -3,14 +3,11 @@
 	function initGame() {
 		var mainArray = [ [0,0,0], [0,0,0], [0,0,0] ],
 			playerFlag = true; // if hui then true, else pizda
-			arrayLength = mainArray.length;
-
-		jQuery(document).on('click','input[type="checkbox"]', function() {
-			alert('sdf');
-		});
+			arrayLength = mainArray.length,
+			playerSign = 'x';
 
 		function trackChanges(posX, posY, pSign) {
-			var playerSign = playerFlag ? 'x' : 'o';
+			playerSign = playerFlag ? 'x' : 'o';
 
 			if (pSign) {
 				playerSign = pSign;
@@ -35,7 +32,8 @@
 				winFlagByColumn = true,
 				winFlagByDiagonal1 = true,
 				winFlagByDiagonal2 = true,
-				finalWinFlag = false;
+				finalWinFlag = false,
+				howHasWon = 'undefined';
 
 			for (i; i < arrayLength; i++) {
 				for (j = 0; j < arrayLength; j++) {
@@ -76,7 +74,7 @@
 				finalWinFlag = true;
 			}
 			
-			return finalWinFlag ? 'Congrats!!! Somebody has won!' : 'Sorry you are not a winner!';
+			return finalWinFlag ? 'POBEDIL' : 'PROEBAL';
 		}
 	}
 
