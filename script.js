@@ -1,17 +1,35 @@
 /* Game logic */
 
+
+jQuery(document).ready(function($) {
+
+	// Game start
+	//$('#start').on('click', function() {
+	//	initGame();
+	//})
+
 	function initGame() {
 		var mainArray = [ [0,0,0], [0,0,0], [0,0,0] ],
 			playerFlag = true; // if hui then true, else pizda
 			arrayLength = mainArray.length,
 			playerSign = 'x';
 
-		function trackChanges(posX, posY, pSign) {
-			playerSign = playerFlag ? 'x' : 'o';
+	$("input", "#table_game").on('change', function() {
+		var posx = $(this).data('posx'),
+			posy = $(this).data('posy');
+		$(this).addClass('penis');
+		trackChanges(posx, posy);
+		if(checkWinner()) {
+			alert('Win!!!!!!!!!');
+		}
+	});
 
-			if (pSign) {
-				playerSign = pSign;
-			}
+	function trackChanges(posX, posY, pSign) {
+			//playerSign = playerFlag ? 'x' : 'o';
+
+			//if (pSign) {
+			//	playerSign = pSign;
+			//}
 				
 			mainArray[posX][posY] = playerSign;
 
@@ -21,7 +39,7 @@
 			
 		}
 
-		function checkWinner() {
+	function checkWinner() {
 			var i = 0,
 				j = 0,
 				helperDiagonalValue1 = mainArray[0][0],
@@ -74,12 +92,8 @@
 				finalWinFlag = true;
 			}
 			
-			return finalWinFlag ? 'POBEDIL' : 'PROEBAL';
+			return finalWinFlag;
 		}
 	}
-
-jQuery(document).ready(function($) {
-	$('#start').on('click', function() {
-		initGame();
-	})
+	initGame();
 });
