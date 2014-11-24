@@ -11,25 +11,29 @@ jQuery(document).ready(function($) {
 	function initGame() {
 		var mainArray = [ [0,0,0], [0,0,0], [0,0,0] ],
 			playerFlag = true; // if hui then true, else pizda
-			arrayLength = mainArray.length,
-			playerSign = 'x';
+			arrayLength = mainArray.length;
 
 	$("input", "#table_game").on('change', function() {
 		var posx = $(this).data('posx'),
-			posy = $(this).data('posy');
-		$(this).addClass('penis');
+			posy = $(this).data('posy'),
+			classFlag = playerFlag ? 'penis' : 'vagina';
+		$(this).addClass(classFlag);
 		trackChanges(posx, posy);
 		if(checkWinner()) {
-			alert('Win!!!!!!!!!');
+			alert(classFlag + ' has won!!!');
+			$('input[type="reset"]').trigger('click');
 		}
 	});
 
-	function trackChanges(posX, posY, pSign) {
-			//playerSign = playerFlag ? 'x' : 'o';
+	$("input[type=reset]").on('click',function() {
+		$("input", "#table_game").each(function() {
+			$(this).removeClass('penis');
+		});
+		resetGame();
+	});
 
-			//if (pSign) {
-			//	playerSign = pSign;
-			//}
+	function trackChanges(posX, posY) {
+			var playerSign = playerFlag ? 'x' : 'o';
 				
 			mainArray[posX][posY] = playerSign;
 
@@ -38,6 +42,11 @@ jQuery(document).ready(function($) {
 			return mainArray[posX][posY];
 			
 		}
+
+	function resetGame() {
+		mainArray = [ [0,0,0], [0,0,0], [0,0,0] ];
+		playerFlag = true;
+	}
 
 	function checkWinner() {
 			var i = 0,
@@ -50,12 +59,12 @@ jQuery(document).ready(function($) {
 				winFlagByColumn = true,
 				winFlagByDiagonal1 = true,
 				winFlagByDiagonal2 = true,
-				finalWinFlag = false,
-				howHasWon = 'undefined';
+				finalWinFlag = false;
 
 			for (i; i < arrayLength; i++) {
+				winFlagByRow = true;
 				for (j = 0; j < arrayLength; j++) {
-					winFlagByRow = true;
+					
 					// Check if player win by row values
 					if (mainArray[i][j-1] != undefined) {
 						if (mainArray[i][j] !== mainArray[i][j-1] || mainArray[i][j] === 0) {
@@ -82,7 +91,7 @@ jQuery(document).ready(function($) {
 						helperDiagonalValue2 = mainArray[i][j];
 						helperDiagonalDesc--;
 					}
-				}
+				}				
 				if (winFlagByRow) {
 					finalWinFlag = true;
 				}
