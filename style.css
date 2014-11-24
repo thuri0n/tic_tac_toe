@@ -34,6 +34,8 @@ background-image: -o-linear-gradient(top, #FFEFAB 0%, #DCBE44 100%);
 background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #FFEFAB), color-stop(1, #DCBE44));
 background-image: -webkit-linear-gradient(top, #FFEFAB 0%, #DCBE44 100%);
 background-image: linear-gradient(to bottom, #FFEFAB 0%, #DCBE44 100%);
+background-repeat: no-repeat;
+background-attachment: fixed;
 
  }
 
